@@ -173,8 +173,23 @@ $(document).ready(function() {
       $("#"+data.person+"").remove();
     }
   });
+// socket.on("chat", function(person, msg) {  
+//   $("#msgs").append("<li><strong><span class='text-success'>" + person.name + "</span></strong>: " + msg + "</li>");
+//   //clear typing field
+//    $("#"+person.name+"").remove();
+//    clearTimeout(timeout);
+//    timeout = setTimeout(timeoutFunction, 0);
+// });
 
-
+socket.on("typing", function(data) {  
+  if (typeof people[socket.id] !== "undefined")
+    io.sockets.in(socket.room).emit("isTyping", {isTyping: data, person: people[socket.id].name});
+});
+$("#conversation").bind("DOMSubtreeModified",function() {  
+  $("#conversation").animate({
+      scrollTop: $("#conversation")[0].scrollHeight
+    });
+});
 /*
   $("#msg").keypress(function(){
     if ($("#msg").is(":focus")) {
@@ -377,14 +392,21 @@ socket.on("history", function(data) {
      clearTimeout(timeout);
      timeout = setTimeout(timeoutFunction, 0);
   });
-
-  socket.on("whisper", function(msTime, person, msg) {
+ // socket.on("whisper", function(person, msg) {
+ //    if (person.name === "You") {
+ //      s = "whisper"
+ //    } else {
+ //      s = "whispers"
+ //    }
+ //    $("#msgs").append("<li><strong><span class='text-muted'>" + person.name + "</span></strong> "+s+": " + msg + "</li>");
+ //  });
+  socket.on("whisper", function( person, msg) {
     if (person.name === "You") {
       s = "whisper"
     } else {
       s = "whispers"
     }
-    $("#msgs").append("<li><strong><span class='text-muted'>" + timeFormat(msTime) + person.name + "</span></strong> "+s+": " + msg + "</li>");
+    $("#msgs").append("<li><strong><span class='text-muted'>" + person.name + "</span></strong> "+s+": " + msg + "</li>");
   });
 
   socket.on("roomList", function(data) {
