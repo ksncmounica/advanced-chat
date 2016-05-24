@@ -1,0 +1,32 @@
+{
+  "name": "advanced-chat-master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "room.js",
+  "dependencies": {
+    "ejs": "^0.8.8",
+    "express": "^3.4.8",
+    "node-uuid": "^1.4.3",
+    "npid": "^0.4.0",
+    "socket.io": "^0.9.17",
+    "underscore": "^1.5.2",
+    "nodemon": "^1.0.20",
+    "bower": "^1.2.8",
+    "shrinkwrap": "^0.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksncmounica/advanced-chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksncmounica/advanced-chat/issues"
+  },
+  "homepage": "https://github.com/ksncmounica/advanced-chat#readme"
+}
